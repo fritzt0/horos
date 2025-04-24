@@ -1,0 +1,38 @@
+diff --git a/ThirdParty/eigen/vtkeigen/eigen/src/Core/Transpositions.h b/ThirdParty/eigen/vtkeigen/eigen/src/Core/Transpositions.h
+index 19c17bb4a6..86da5af593 100644
+--- a/ThirdParty/eigen/vtkeigen/eigen/src/Core/Transpositions.h
++++ b/ThirdParty/eigen/vtkeigen/eigen/src/Core/Transpositions.h
+@@ -384,7 +384,7 @@ class Transpose<TranspositionsBase<TranspositionsDerived> >
+     const Product<OtherDerived, Transpose, AliasFreeProduct>
+     operator*(const MatrixBase<OtherDerived>& matrix, const Transpose& trt)
+     {
+-      return Product<OtherDerived, Transpose, AliasFreeProduct>(matrix.derived(), trt.derived());
++      return Product<OtherDerived, Transpose, AliasFreeProduct>(matrix.derived(), trt);
+     }
+ 
+     /** \returns the \a matrix with the inverse transpositions applied to the rows.
+diff --git a/ThirdParty/png/vtkpng/pngpriv.h b/ThirdParty/png/vtkpng/pngpriv.h
+index 6d2e424d2e..bf7c7f6235 100644
+--- a/ThirdParty/png/vtkpng/pngpriv.h
++++ b/ThirdParty/png/vtkpng/pngpriv.h
+@@ -496,18 +496,8 @@
+     */
+ #  include <float.h>
+ 
+-#  if (defined(__MWERKS__) && defined(macintosh)) || defined(applec) || \
+-    defined(THINK_C) || defined(__SC__) || defined(TARGET_OS_MAC)
+-   /* We need to check that <math.h> hasn't already been included earlier
+-    * as it seems it doesn't agree with <fp.h>, yet we should really use
+-    * <fp.h> if possible.
+-    */
+-#    if !defined(__MATH_H__) && !defined(__MATH_H) && !defined(__cmath__)
+-#      include <fp.h>
+-#    endif
+-#  else
+-#    include <math.h>
+-#  endif
++#  include <math.h>
++
+ #  if defined(_AMIGA) && defined(__SASC) && defined(_M68881)
+    /* Amiga SAS/C: We must include builtin FPU functions when compiling using
+     * MATH=68881
