@@ -1,0 +1,15 @@
+diff --git a/ofstd/include/dcmtk/ofstd/ofutil.h b/ofstd/include/dcmtk/ofstd/ofutil.h
+index 856f5732f..7dd6609e4 100644
+--- a/ofstd/include/dcmtk/ofstd/ofutil.h
++++ b/ofstd/include/dcmtk/ofstd/ofutil.h
+@@ -75,8 +75,8 @@ struct OFrvalue_storage
+         // copy constructor should be fine for primitive types.
+         inline type(const T& pt)
+         : t( pt ) {}
+-        inline type(const OFrvalue_storage& rhs)
+-        : t( rhs.pt ) {}
++        inline type(const type& rhs)
++        : t( rhs.t ) {}
+ 
+         // automatic conversion to the underlying type
+         inline operator T&() const { return OFconst_cast( T&, t ); }
